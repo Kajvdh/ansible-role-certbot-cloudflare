@@ -11,16 +11,7 @@
     - python3-apt
     - python3-dev
     - python3-pycurl
-
-- name: check if certbot-dns-cloudflare plugin is installed
-  shell: certbot plugins | grep dns-cloudflare
-  register: cf_check
-  ignore_errors: true
-  changed_when: "cf_check is failed"
-
-- name: Install certbot-dns-cloudflare
-  shell: "cd {{certbot_dir}}/certbot-dns-cloudflare && python setup.py install"
-  when: cf_check is failed
+    - python3-certbot-dns-cloudflare
 
 - name: Create certbot folder - sudouser
   file:
